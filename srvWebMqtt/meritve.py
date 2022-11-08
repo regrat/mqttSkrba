@@ -9,7 +9,7 @@ class Meritve:
             "Helenina soba",
             "dnevna soba",
             "gretje",
-            "zunanja"
+            "zunaj"
         ]
 
         self.labels29 = [
@@ -19,7 +19,7 @@ class Meritve:
             "soba 003",
             "RPI",
             "-",
-            "zunanja"
+            "zunaj"
         ]
 
         print("Hostname: " + myhostname)
@@ -73,19 +73,21 @@ class Meritve:
     def setRow(self, row):
         oneRowOfData = {}
         oneRowOfData['time'] =          str(row[0])
-        oneRowOfData['timeLAB'] =       self.labels[0]
-        oneRowOfData['client_001'] =    row[3]
-        oneRowOfData['client_001LAB'] = self.labels[1]
-        oneRowOfData['client_002'] =    row[4]
-        oneRowOfData['client_002LAB'] = self.labels[2]
-        oneRowOfData['client_003'] =    row[1]
-        oneRowOfData['client_003LAB'] = self.labels[3]
-        oneRowOfData['RPI'] =           row[2]
-        oneRowOfData['RPILAB'] =        self.labels[4]
+        oneRowOfData['client_001'] =    row[1]
+        oneRowOfData['client_002'] =    row[2]
+        oneRowOfData['client_003'] =    row[3]
+        oneRowOfData['RPI'] =           row[4]
         oneRowOfData['RPIa'] =          row[5]
-        oneRowOfData['RPIaLAB'] =       self.labels[5]
         oneRowOfData['lj'] =            row[6]
+
+        oneRowOfData['timeLAB'] =       self.labels[0]
+        oneRowOfData['client_001LAB'] = self.labels[1]
+        oneRowOfData['client_002LAB'] = self.labels[2]
+        oneRowOfData['client_003LAB'] = self.labels[3]
+        oneRowOfData['RPILAB'] =        self.labels[4]
+        oneRowOfData['RPIaLAB'] =       self.labels[5]
         oneRowOfData['ljLAB'] =         self.labels[6]
+
         oneRowOfData['rangeTime'] =     1
 
         return oneRowOfData

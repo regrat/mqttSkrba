@@ -35,7 +35,7 @@ broker_port = 1883
 meritve = M.Meritve(socket.gethostname())
 
 def debug(s):
-    if True:
+    if False:
         print(s)
 
 def on_connect(client, userdata, flags, rc):

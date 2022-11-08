@@ -8,11 +8,6 @@ import glob
 import time
 
 os.system('modprobe w1-gpio')                              # load one wire communication device kernel modules
-#os.system('modprobe w1-therm')                                                 
-#base_dir = '/sys/bus/w1/devices/'                          # point to the address
-#device_folder = glob.glob(base_dir + '28*')[0]             # find device with address starting from 28*
-#device_file = device_folder + '/w1_slave'                  # store the details
-
 
 def read_temp_raw(device_file):
    f = open(device_file, 'r')

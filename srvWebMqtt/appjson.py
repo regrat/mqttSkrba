@@ -12,11 +12,6 @@
 #  sqlite> select * from T_data;
 #          2021-02-14 11:29:40|-17|20.562
 #
-# Zagon:
-# /etc/rc.local
-# /usr/bin/python3 /home/pi/mqtt/srvWebMqtt/appjson_v3.py > /home/pi/mqtt/logs/appjson_v3.log 2>&1 &
-# /usr/bin/python3 /home/pi/mqtt/srvWebMqtt/appjson_v3.py  2> /home/pi/mqtt/logs/appjson_v3.log 1>/dev/null &
-
 
 '''
     RPi WEb Server for DHT captured data with Gage and Graph plot
@@ -33,15 +28,15 @@ from flask import send_file, send_from_directory, safe_join, abort
 
 from flask import g, redirect, render_template, url_for, jsonify
 
-import os
+import os, socket
 import meritve as M
 
 app = Flask(__name__)
 
 import sqlite3
 
-mydb = '/home/pi/mqtt/sensorsData.db'
-meri = M.Meritve()
+mydb = '/home/pi/mqttSkrba/sensorsData.db'
+meritve = M.Meritve(socket.gethostname())
 
 def debug(s):
     if False:
@@ -49,12 +44,12 @@ def debug(s):
 
 # Retrieve LAST data from database
 def getLastData():
-    meri.reset()
+    meritve.reset()
     oneRowOfData = {}
     conn=sqlite3.connect(mydb)
     curs=conn.cursor()
-    for row in meri.cursExecuteSelect(curs, 1):
-        oneRowOfData = meri.setRow(row)
+    for row in meritve.cursExecuteSelect(curs, 1):
+        oneRowOfData = meritve.setRow(row)
     conn.close()
     return oneRowOfData
 
@@ -70,7 +65,7 @@ def getDataJSON (numOfAllSamples):
     conn=sqlite3.connect(mydb)
     conn.row_factory = dict_factory
     curs=conn.cursor()
-    meri.cursExecuteSelect(curs, numOfAllSamples)
+    meritve.cursExecuteSelect(curs, numOfAllSamples)
     data = curs.fetchall()
     conn.close()
     return json.dumps(data)
@@ -126,7 +121,7 @@ def people():
 @app.route("/v3/getTEST/<csv_id>")
 def getTEST(csv_id):
     debug('DEBUG: /v3/getTEST/<csv_id>')
-    app.config["CLIENT_CSV"] = "/home/pi/mqtt/srvWebMqtt/templates/v3"
+    app.config["CLIENT_CSV"] = "/home/pi/mqttSkrba/srvWebMqtt/templates/v3"
     filename = f"{csv_id}.json"
 
     try:
