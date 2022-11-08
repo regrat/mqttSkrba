@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  appDhtWebHist_v2.py
-#  
-#  Created by MJRoBot.org 
-#  10Jan18
+#  based on version created by MJRoBot.org 
 # https://www.hackster.io/mjrobot/from-data-to-graph-a-web-journey-with-flask-and-sqlite-4dba35
 #
 # pip3 install --upgrade Flask
