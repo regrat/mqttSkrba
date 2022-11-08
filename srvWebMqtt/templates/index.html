@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title>MQTT Skrba - temperature v sobah</title>
+    <link rel="stylesheet" href='../static/style.css'/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="refresh" content="60" />
+</head>
+<body>
+	<table>
+	<tr><td>{{ value['client_001LAB'] }}:</td><td>{{ value['client_001'] }}° C   </tr></td>
+	<tr><td>{{ value['client_002LAB'] }}:</td><td>{{ value['client_002'] }}° C   </tr></td>
+	<tr><td>{{ value['client_003LAB'] }}:</td><td>{{ value['client_003'] }}° C   </tr></td>
+	<tr><td>{{ value['RPILAB'] }}:       </td><td>{{ value['RPI']  }}° C         </tr></td>
+	<tr><td>{{ value['RPIaLAB'] }}:      </td><td>{{ value['RPIa'] }}° C         </tr></td>
+	<tr><td>{{ value['ljLAB'] }}:        </td><td>{{ value['lj'] }}° C           </tr></td>
+	</table>
+	<hr>
+Graf <a href="show.html?n=144">24 ur</a>&nbsp;
+<a href="show.html?n=144">teden</a>&nbsp;
+<a href="show.html?n=10080">10 tednov</a>
+&nbsp;
+&nbsp;
+&nbsp;
+Zadnja meritev: {{ value['time'] }}
+</body>
+</html>
+
