@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-#2021-04-10
-#2022-10-28
 # Vir:
 #   https://github.com/eclipse/paho.mqtt.python
 #
@@ -29,7 +27,7 @@ import readLJ as LJ
 import srvWebMqtt.meritve as M
 import socket
 
-dbname = '/home/pi/mqtt/sensorsData.db'
+dbname = '/home/pi/mqttSkrba/sensorsData.db'
 
 broker_url = "127.0.0.1"
 broker_port = 1883
@@ -124,11 +122,11 @@ def one_loop():
         if len(piTemp) > 0:
             dnevnaSoba = piTemp[0]
             if isinstance(dnevnaSoba, float):
-                meritve.set("dnevnaSoba", dnevnaSoba)
+                meritve.set("RPI", dnevnaSoba)
             if len(piTemp) > 1:
                 radiator = piTemp[1]
                 if isinstance(radiator, float):
-                    meritve.set("radiator", radiator)
+                    meritve.set("RPIa", radiator)
         else:
             debug("ERROR: temperature len = 0")
 
