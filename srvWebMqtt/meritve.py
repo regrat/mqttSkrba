@@ -5,8 +5,8 @@ class Meritve:
         self.labels28 = [
             "čas",
             "Dorina soba",
-            "skrinja",
             "Helenina soba",
+            "skrinja",
             "dnevna soba",
             "gretje",
             "zunaj"
