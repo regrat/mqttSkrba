@@ -32,8 +32,7 @@ dbname = '/home/pi/mqttSkrba/sensorsData.db'
 broker_url = "127.0.0.1"
 broker_port = 1883
 
-meritve = M.Meritve()
-myhostname = socket.gethostname()
+meritve = M.Meritve(socket.gethostname())
 
 def debug(s):
     if True:

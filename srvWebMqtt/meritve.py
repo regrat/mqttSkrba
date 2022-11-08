@@ -1,6 +1,7 @@
 
 class Meritve:
-    def __init__(self):
+    def __init__(self, myhostname):
+
         self.labels28 = [
             "čas",
             "skrinja",
@@ -9,6 +10,8 @@ class Meritve:
             "dnevna soba",
             "gretje",
             "zunanja"
+        ]
+
         self.labels29 = [
             "čas",
             "soba 001",
@@ -18,6 +21,8 @@ class Meritve:
             "-",
             "zunanja"
         ]
+
+        print("Hostname: " + myhostname)
         if myhostname == "malina28":
             self.labels = self.labels28
         else:
