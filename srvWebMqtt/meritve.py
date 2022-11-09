@@ -132,9 +132,9 @@ class Meritve:
 
     def printAll(self):
         print("     ",
-	self.client_001, ",",
-	self.client_002, ",",
-	self.client_003, ",",
-	self.RPI, ",",
-	self.RPIa, ",",
-	self.lj)
+            self.client_001, ",",
+            self.client_002, ",",
+            self.client_003, ",",
+            self.RPI, ",",
+            self.RPIa, ",",
+            self.lj)

@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>MQTT Skrba</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>MQTT Skrba</title>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <a href="/" class="button">Trenutno</a>
+	<a href="/" class="button">Trenutno</a>
 SKRBA
-    <script>
-	var search_term;
-	var s='get/temperatures?n=';
+	<script>
+		var search_term;
+		var s='get/temperatures?n=';
 
-	const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString); 
-	if(urlParams.has('n')) {
-		search_term = urlParams.get('n');
-	} else {
-		search_term = '6';
-	}
-	//alert(search_term);
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString); 
+		if(urlParams.has('n')) {
+			search_term = urlParams.get('n');
+	    } else {
+			search_term = '6';
+        }
+		//alert(search_term);
 
-        fetch(s.concat(search_term))
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                showData(data, "zzz");
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
+		fetch(s.concat(search_term))
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				showData(data, "zzz");
+			})
+			.catch(function (err) {
+				console.log('error: ' + err);
+			}
+		);
 
-    </script>
+	</script>
 	<div id="myGraph"></div>
 	<script>
 		function showData(data, abel) {
-		
+
 			var trace1 = {
 				x: [], 
 				y: [], 
@@ -52,7 +53,7 @@ SKRBA
 				type: 'scatter',
 				name:'Helena (B)'
 			};
-			
+
 			var trace3 = {
 				x: [], 
 				y: [], 
@@ -66,7 +67,7 @@ SKRBA
 				type: 'scatter',
 				name:'zmrzovalnik'
 			};
-    
+
 			var trace5 = {
 				x: [], 
 				y: [], 
@@ -86,7 +87,7 @@ SKRBA
 				name:'zunanja'
 			};
 
-       		     	for (var i = 0; i < data.length; i++) {
+           	for (var i = 0; i < data.length; i++) {
 				trace1.name = abel;
 				trace1.x.push(data[i].timestamp);
 				trace1.y.push(data[i].client_001); 
@@ -105,10 +106,10 @@ SKRBA
 
 				trace6.x.push(data[i].timestamp);
 				trace6.y.push(data[i].lj); 
-            		}
+        	}
 
-            		var graphdata = [trace1, trace2, trace3, trace4, trace5, trace6];
-            		<!-- https://plotly.com/javascript/reference/layout/yaxis/#layout-yaxis-range -->
+           	var graphdata = [trace1, trace2, trace3, trace4, trace5, trace6];
+           	<!-- https://plotly.com/javascript/reference/layout/yaxis/#layout-yaxis-range -->
 			var layout = {
 				title: 'MQTT meritve',
 				font: {size: 10},
@@ -118,9 +119,9 @@ SKRBA
 			var config = {responsive: true};
 			plotDIV = document.getElementById('myGraph');
 			Plotly.newPlot(plotDIV, graphdata, layout, config);
-        	} //showData()
 
-		showData(data, "xx");
-     </script>
+		} //showData()
+
+	</script>
 </body>
 </html> 

@@ -1,7 +1,7 @@
 import bs4 as bs
 import urllib.request
 
-# vrne trenutno temperaturov Ljubljani
+# vrne trenutno temperaturo
 
 def getTemp():
     url = "https://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/sl/observationAms_si_latest.html"

@@ -1,11 +1,8 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #
-#  insertDataTableDHT.py
-#  
-#  Developed by Marcelo Rovai, MJRoBot.org @ 9Jan18
-#  
-#  Query dada on table "DHT_data" 
+#  show data in the database
+
 
 import sqlite3
 
@@ -17,7 +14,7 @@ print ("\nEntire database contents:\n")
 for row in curs.execute("SELECT * FROM T_data"):
     print (row)
 
-print("All records:")
+print("Number of records:")
 for row in curs.execute("SELECT COUNT(timestamp) from T_data"):
     print (row)
     print (row[0])
