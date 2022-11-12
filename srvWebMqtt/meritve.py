@@ -14,10 +14,10 @@ class Meritve:
 
         self.labels29 = [
             "čas",
-            "soba 001",
-            "soba 002",
-            "soba 003",
-            "RPI",
+            "klet",
+            "2. nadstropje",
+            "letni vrt",
+            "dnevna soba",
             "-",
             "zunaj"
         ]
