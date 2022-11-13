@@ -93,6 +93,11 @@ class Meritve:
         return oneRowOfData
 
 
+#sqlite3 sensorsData.db
+#  sqlite> .tables
+#  sqlite> delete from T_data;
+#  sqlite> select * from T_data;
+
     def curExecuteCreate(self, cur):
         cur.execute("CREATE TABLE T_data(" +
             "timestamp  DATETIME, " +

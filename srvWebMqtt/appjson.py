@@ -6,12 +6,6 @@
 #
 # pip3 install --upgrade Flask
 #
-#sqlite3 sensorsData.db
-#  sqlite> .tables
-#  sqlite> delete from T_data;
-#  sqlite> select * from T_data;
-#          2021-02-14 11:29:40|-17|20.562
-#
 
 '''
     RPi WEb Server for DHT captured data with Gage and Graph plot
@@ -158,5 +152,5 @@ def get(json_id):
 
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=80, debug=True)
+   app.run(host='0.0.0.0', port=80, debug=False)
 
