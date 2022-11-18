@@ -27,6 +27,10 @@ import meritve as M
 
 app = Flask(__name__)
 
+import logging
+log = logging.getLogger('werkzeug')
+log.setLevel(logging.ERROR)
+
 import sqlite3
 
 mydb = '/home/pi/mqttSkrba/sensorsData.db'

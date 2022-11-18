@@ -71,7 +71,7 @@ def add_data_to_DB ():
     meritve.cursExecuteInsert(curs)
     conn.commit()
     conn.close()
-    meritve.printAll()
+    #meritve.printAll()
 
 
 def one_loop():
