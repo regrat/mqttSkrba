@@ -92,7 +92,7 @@ rangeTime = 1
 @app.route("/")
 def index():
     oneRowOfData = getLastData()
-
+    oneRowOfData['hostname'] = socket.gethostname()
     #print('This is error output', file=sys.stderr)
     debug('DEBUG: app.route')
     debug('DEBUG: one row = ' + str(oneRowOfData))
