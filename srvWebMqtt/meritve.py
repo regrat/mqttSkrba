@@ -21,12 +21,24 @@ class Meritve:
             "-",
             "zunaj"
         ]
+        
+        self.labelsB2 = [
+            "čas",
+            "1. nadstropje",
+            "2. nadstropje",
+            "hodnik",
+            "dnevna soba",
+            "-",
+            "zunaj"
+        ]
 
         print("Hostname: " + myhostname)
         if myhostname == "malina28":
             self.labels = self.labels28
-        else:
+        elif myhostname == "malina29":
             self.labels = self.labels29
+        else:
+            self.labels = self.labelsB2
         self.reset()
 
 

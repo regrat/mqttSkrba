@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>MQTT Skrba</title>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+	<a href="/" class="button">Trenutno</a>
+SKRBA
+	<script>
+		var search_term;
+		var s='get/temperatures?n=';
+
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString); 
+		if(urlParams.has('n')) {
+			search_term = urlParams.get('n');
+	    } else {
+			search_term = '6';
+        }
+		//alert(search_term);
+
+		fetch(s.concat(search_term))
+			.then(function (response) {
+				return response.json();
+			})
+			.then(function (data) {
+				showData(data);
+			})
+			.catch(function (err) {
+				console.log('error: ' + err);
+			}
+		);
+
+	</script>
+	<div id="myGraph"></div>
+	<script>
+		function showData(data) {
+
+            const labele = [
+                "klet",
+                "2. nadstropje",
+                "letni vrt",
+                "dnevna soba",
+                "-",
+                "zunaj"
+            ];
+
+			var trace0 = {
+				x: [], 
+				y: [], 
+				type: 'scatter',
+				name: 'Dora (A)'
+			};
+
+			var trace1 = {
+				x: [], 
+				y: [], 
+				type: 'scatter',
+				name:'Helena (B)'
+			};
+
+			var trace2 = {
+				x: [], 
+				y: [], 
+				type: 'scatter',
+				name:'dnevna soba'
+			};
+
+			var trace3 = {
+				x: [], 
+				y: [], 
+				type: 'scatter',
+				name:'zmrzovalnik'
+			};
+
+			var trace4 = {
+				x: [], 
+				y: [], 
+				type: 'scatter',
+				markers: 'True',
+				name:'gretje'
+			};
+
+			var trace5 = {
+				x: [], 
+				y: [], 
+				type: 'scatter',
+    				line: {
+      					color: 'rgb(100, 100, 100)',
+      					width: 1
+    				},
+				name:'zunanja'
+			};
+
+			trace0.name = labele[0];
+			trace1.name = labele[1];
+			trace2.name = labele[2];
+			trace3.name = labele[3];
+			trace4.name = labele[4];
+			trace5.name = labele[5];
+
+           	for (var i = 0; i < data.length; i++) {
+				trace0.x.push(data[i].timestamp);
+				trace0.y.push(data[i].client_001); 
+
+				trace1.x.push(data[i].timestamp);
+				trace1.y.push(data[i].client_002); 
+				
+				trace2.x.push(data[i].timestamp);
+				trace2.y.push(data[i].client_003);
+				
+				trace3.x.push(data[i].timestamp);
+				trace3.y.push(data[i].RPI); 
+
+				trace4.x.push(data[i].timestamp);
+				trace4.y.push(data[i].RPIa); 
+
+				trace5.x.push(data[i].timestamp);
+				trace5.y.push(data[i].lj); 
+        	}
+
+           	var graphdata = [trace0, trace1, trace2, trace3, trace4, trace5];
+           	<!-- https://plotly.com/javascript/reference/layout/yaxis/#layout-yaxis-range -->
+			var layout = {
+				title: 'MQTT meritve',
+				font: {size: 10},
+				xaxis: { title: 'ČAS',	tickangle: 90	},
+				yaxis: { title: 'TEMPERATURA'	}
+			}
+			var config = {responsive: true};
+			plotDIV = document.getElementById('myGraph');
+			Plotly.newPlot(plotDIV, graphdata, layout, config);
+
+		} //showData()
+
+	</script>
+</body>
+</html> 
