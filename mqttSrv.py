@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-# Vir:
+# See also:
 #   https://github.com/eclipse/paho.mqtt.python
 #
-# Inštalacija in zagon
+# Installation and start
 """
   sudo apt-get install -y sshfs
   sudo apt-get install python3-pip
@@ -15,7 +15,7 @@
   sudo apt-get install python3-matplotlib
 
   sudo vi /etc/rc.local
-  /usr/bin/python3 /home/pi/mqtt/mqttSrv.py   > /home/pi/mqtt/logs/mqttSrv.log 2>&1  &
+  /usr/bin/python3 /home/pi/mqttSkrba/mqttSrv.py   > /home/pi/mqttSkrba/logs/mqttSrv.log 2>&1  &
 """
 
 import paho.mqtt.client as mqtt
@@ -35,7 +35,7 @@ broker_port = 1883
 meritve = M.Meritve(socket.gethostname())
 
 def debug(s):
-    if False:
+    if True:
         print(s)
 
 def on_connect(client, userdata, flags, rc):
@@ -127,7 +127,7 @@ def one_loop():
                 if isinstance(radiator, float):
                     meritve.set("RPIa", radiator)
         else:
-            debug("ERROR: temperature len = 0")
+            debug("No RPI temperatures available")
 
         add_data_to_DB ()
         meritve.reset()

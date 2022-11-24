@@ -1,17 +1,17 @@
 #!/usr/bin/python3
-# temperature reader onRPI
-# sudoraspi-config  (enable 1-wire)
+# temperature reader DS18B20 on RPI
+# sudo raspi-config  (enable 1-wire)
 # see https://electrosome.com/ds18b20-sensor-raspberry-pi-python/
 
 import os
 import glob
 import time
 
-os.system('modprobe w1-gpio')                              # load one wire communication device kernel modules
+os.system('modprobe w1-gpio')                        # load one wire communication device kernel modules
 
 def read_temp_raw(device_file):
    f = open(device_file, 'r')
-   lines = f.readlines()                                   # read the device details
+   lines = f.readlines()                             # read the device details
    f.close()
    return lines
 
@@ -40,12 +40,12 @@ def read_temp1(sensor):
            time.sleep(0.2)
            lines = read_temp_raw(sensor)
 
-   equals_pos = lines[1].find('t=')                        # find temperature in the details
+   equals_pos = lines[1].find('t=')                  # find temperature in the details
    #print("Read temp:" + lines[1])
    if equals_pos > 0:
       if len(lines[1]) > equals_pos + 2:
          temp_string = lines[1][equals_pos+2:]
-         temp_c = float(temp_string) / 1000.0                 # convert to Celsius
+         temp_c = float(temp_string) / 1000.0        # convert to Celsius
          return temp_c
    return ""
 
@@ -56,5 +56,5 @@ def read_temp():
       out.append(read_temp1(sensor))
    return out
 
-#read_temp()
+# read_temp()
 
