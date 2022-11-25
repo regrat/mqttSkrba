@@ -40,6 +40,8 @@ def read_temp1(sensor):
            time.sleep(0.2)
            lines = read_temp_raw(sensor)
 
+   if len(lines) < 2:
+       return ""
    equals_pos = lines[1].find('t=')                  # find temperature in the details
    #print("Read temp:" + lines[1])
    if equals_pos > 0:
