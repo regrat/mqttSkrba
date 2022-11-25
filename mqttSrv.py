@@ -20,7 +20,7 @@
 
 import paho.mqtt.client as mqtt
 import sqlite3
-import time
+import time, sys
 
 import readTemp as B18
 import readLJ as LJ
@@ -33,9 +33,14 @@ broker_url = "127.0.0.1"
 broker_port = 1883
 
 meritve = M.Meritve(socket.gethostname())
+if len(sys.argv) > 1:
+    dbg = True
+else:
+    dbg = False
 
 def debug(s):
-    if True:
+    global dbg
+    if dbg:
         print(s)
 
 def on_connect(client, userdata, flags, rc):
