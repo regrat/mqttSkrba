@@ -121,6 +121,10 @@ SKRBA
                 }
             }
 
+            for(var j = traces.length - 1; j > 0; j--) 
+		if (labels[j] == "-")
+	    		traces.splice(j, 1) //remove
+
             <!-- https://plotly.com/javascript/reference/layout/yaxis/#layout-yaxis-range -->
             var layout = {
                 title: 'MQTT meritve',
