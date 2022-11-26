@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  based on version created by MJRoBot.org 
+# Initial work based on version created by MJRoBot.org
 # https://www.hackster.io/mjrobot/from-data-to-graph-a-web-journey-with-flask-and-sqlite-4dba35
 #
 # pip3 install --upgrade Flask
@@ -92,8 +92,10 @@ rangeTime = 1
 @app.route("/")
 def index():
     oneRowOfData = getLastData()
+    for key, value in oneRowOfData.items():
+        if value == None:
+            oneRowOfData[key] = ""
     oneRowOfData['hostname'] = socket.gethostname()
-    #print('This is error output', file=sys.stderr)
     debug('DEBUG: app.route')
     debug('DEBUG: one row = ' + str(oneRowOfData))
     return render_template('index.html', value=oneRowOfData)
@@ -156,5 +158,5 @@ def get(json_id):
 
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=80, debug=True)
+   app.run(host='0.0.0.0', port=80, debug=False)
 
