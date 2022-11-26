@@ -90,6 +90,7 @@ SKRBA
                     x: [],
                     y: [],
                     type: 'scatter',
+                    mode: 'lines',
                     name: labels[i]
                 };
             }
@@ -105,38 +106,39 @@ SKRBA
                     }
             };
 
-            const temp = "client_00";			
+            const temp = "client_00";
+
             for(var i = 1; i < traces.length-2; i++) {
                 dataClients.push(temp.concat(i));
             }
+
             for(var i = 0; i < dataClientsFixed.length; i++) {
                 dataClients.push(dataClientsFixed[i]);
             }
 
             for (var i = 0; i < data.length; i++) {
-
                 for(var j = 0; j < traces.length; j++) {
                     traces[j].x.push(data[i].timestamp);
                     traces[j].y.push(data[i][dataClients[j]]);
                 }
             }
 
-            for(var j = traces.length - 1; j > 0; j--) 
-		if (labels[j] == "-")
-	    		traces.splice(j, 1) //remove
+            for(var j = traces.length - 1; j >= 0; j--)
+                if ( labels[j] == "-" )
+                    traces.splice(j, 1) //remove
 
             <!-- https://plotly.com/javascript/reference/layout/yaxis/#layout-yaxis-range -->
             var layout = {
                 title: 'MQTT meritve',
-                font: {size: 10},
-                xaxis: { title: 'ČAS',	tickangle: 90	},
-                yaxis: { title: 'TEMPERATURA'	}
+                font:  { size: 10 },
+                xaxis: { title: 'ČAS', tickangle: 90 },
+                yaxis: { title: 'TEMPERATURA' }
             }
             var config = {responsive: true};
             plotDIV = document.getElementById('myGraph');
             Plotly.newPlot(plotDIV, traces, layout, config);
 
-        } //showData()
+        }
 
     </script>
 </body>

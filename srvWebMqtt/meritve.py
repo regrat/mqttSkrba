@@ -44,12 +44,12 @@ class Meritve:
 
     def reset(self):
         self.time = ""
-        self.client_001 = ""
-        self.client_002 = ""
-        self.client_003 = ""
-        self.RPI = ""
-        self.RPIa = ""
-        self.lj = ""
+        self.client_001 = None
+        self.client_002 = None
+        self.client_003 = None
+        self.RPI = None
+        self.RPIa = None
+        self.lj = None
 
 
     def set(self, what, value):
