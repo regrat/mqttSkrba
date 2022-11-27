@@ -4,7 +4,7 @@ class Meritve:
 
         self.labels28 = [
             "čas",
-            "Dorina soba",
+            "kuhinja",
             "Helenina soba",
             "skrinja",
             "dnevna soba",
@@ -21,7 +21,7 @@ class Meritve:
             "-",
             "zunaj"
         ]
-        
+ 
         self.labelsB2 = [
             "čas",
             "1. nadstropje",
@@ -91,7 +91,7 @@ class Meritve:
         oneRowOfData['RPI'] =           row[4]
         oneRowOfData['RPIa'] =          row[5]
         oneRowOfData['lj'] =            row[6]
-
+        #labels for GUI
         oneRowOfData['timeLAB'] =       self.labels[0]
         oneRowOfData['client_001LAB'] = self.labels[1]
         oneRowOfData['client_002LAB'] = self.labels[2]
@@ -104,11 +104,6 @@ class Meritve:
 
         return oneRowOfData
 
-
-#sqlite3 sensorsData.db
-#  sqlite> .tables
-#  sqlite> delete from T_data;
-#  sqlite> select * from T_data;
 
     def curExecuteCreate(self, cur):
         cur.execute("CREATE TABLE T_data(" +
