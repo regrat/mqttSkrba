@@ -1,4 +1,4 @@
-mport bs4 as bs
+import bs4 as bs
 import urllib.request
 
 # current temperatue
