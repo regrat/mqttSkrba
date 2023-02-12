@@ -8,4 +8,3 @@
   log_timestamp_format %Y-%m-%dT%H:%M:%S
   listener 1883
   allow_anonymous true
-
