@@ -24,9 +24,8 @@ import time, sys
 
 import mqtt.readTemp as B18
 import mqtt.readLJ as LJ
-import socket
-
 import srvWebMqtt.meritve as M
+import socket
 
 dbname = '/home/pi/mqttSkrba/sensorsData.db'
 
