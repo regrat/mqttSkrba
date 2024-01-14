@@ -22,8 +22,8 @@ import paho.mqtt.client as mqtt
 import sqlite3
 import time, sys
 
-import readTemp as B18
-import readLJ as LJ
+import mqtt.readTemp as B18
+import mqtt.readLJ as LJ
 import srvWebMqtt.meritve as M
 import socket
 
