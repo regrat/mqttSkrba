@@ -8,7 +8,7 @@ import sys
 import socket
 import srvWebMqtt.meritve as M
 
-con = lite.connect('sensorsData.db')
+con = lite.connect('../sensorsData.db')
 
 # add_data (0.0, 0.0, 0.0)
 

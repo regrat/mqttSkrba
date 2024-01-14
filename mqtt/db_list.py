@@ -6,7 +6,7 @@
 
 import sqlite3
 
-conn=sqlite3.connect('sensorsData.db')
+conn=sqlite3.connect('../sensorsData.db')
 
 curs=conn.cursor()
 
