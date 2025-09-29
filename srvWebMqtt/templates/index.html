@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>MQTT Skrba - temperature v sobah</title>
+	<title>MQTT Skrba - temperature</title>
 	<link rel="stylesheet" href='../static/style.css'/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="refresh" content="60" />
@@ -13,7 +13,7 @@
 	<tr><td>{{ value['client_003LAB'] }}:</td><td>{{ value['client_003'] }}° C   </tr></td>
 	<tr><td>{{ value['RPILAB'] }}:       </td><td>{{ value['RPI']  }}° C         </tr></td>
 	<tr><td>{{ value['RPIaLAB'] }}:      </td><td>{{ value['RPIa'] }}° C         </tr></td>
-	<tr><td>{{ value['ljLAB'] }}:        </td><td>{{ value['lj'] }}° C           </tr></td>
+	<tr><td>{{ value['ljTLAB'] }}:       </td><td>{{ value['ljT'] }}° C, {{ value['ljH'] }} %  </tr></td>
 	</table>
 	<hr>
 Graf <a href="show.html?n=144&h={{ value['hostname'] }}">24 ur</a>&nbsp;

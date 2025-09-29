@@ -114,7 +114,7 @@ def my_form_post():
 
 @app.route('/show.html', methods=['GET', 'POST'])
 def people():
-    debug('DEBUG: /show.html - temperatures, calling show.html')
+    debug('DEBUG: /show.html - temperatures graph, calling show.html')
     return render_template('show.html')
 
 

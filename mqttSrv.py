@@ -3,6 +3,7 @@
 #   https://github.com/eclipse/paho.mqtt.python
 #
 # Installation and start
+# 29.9.2025
 """
   sudo apt-get install -y sshfs
   sudo apt-get install python3-pip
@@ -117,9 +118,10 @@ def one_loop():
         time.sleep(2)   #wait to collect all mqtt client data
         debug("Checking ARSO...")
 
-        lj = LJ.getTemp()
-        debug("DEBUG: LJ: " + lj)
-        meritve.set("lj", lj)
+        ljT, ljH = LJ.getTemp()
+        debug("DEBUG: LJ: " + ljT + " " + ljH)
+        meritve.set("ljT", ljT)
+        meritve.set("ljH", ljH)
 
         piTemp = B18.read_temp()
         debug("B18 konec...")

@@ -1,3 +1,4 @@
+# 29.9.2025
 
 class Meritve:
     def __init__(self, myhostname):
@@ -9,7 +10,8 @@ class Meritve:
             "skrinja",
             "dnevna soba",
             "gretje",
-            "zunaj"
+            "zunaj",
+            "zunajH"
         ]
 
         self.labels29 = [
@@ -19,7 +21,8 @@ class Meritve:
             "letni vrt",
             "dnevna soba",
             "-",
-            "zunaj"
+            "zunaj",
+            "zunajH"
         ]
  
         self.labelsB2 = [
@@ -29,7 +32,8 @@ class Meritve:
             "hodnik",
             "dnevna soba",
             "-",
-            "zunaj"
+            "zunaj",
+            "zunajH"
         ]
 
         print("Hostname: " + myhostname)
@@ -49,7 +53,8 @@ class Meritve:
         self.client_003 = None
         self.RPI = None
         self.RPIa = None
-        self.lj = None
+        self.ljT = None
+        self.ljH = None
 
 
     def set(self, what, value):
@@ -78,8 +83,10 @@ class Meritve:
                 self.RPI = fv
             elif what == "RPIa":
                 self.RPIa = fv
-            elif what == "lj":
-                self.lj = fv
+            elif what == "ljT":
+                self.ljT = fv
+            elif what == "ljH":
+                self.ljH = fv
 
 
     def setRow(self, row):
@@ -90,7 +97,8 @@ class Meritve:
         oneRowOfData['client_003'] =    row[3]
         oneRowOfData['RPI'] =           row[4]
         oneRowOfData['RPIa'] =          row[5]
-        oneRowOfData['lj'] =            row[6]
+        oneRowOfData['ljT'] =           row[6]
+        oneRowOfData['ljH'] =           row[7]
         #labels for GUI
         oneRowOfData['timeLAB'] =       self.labels[0]
         oneRowOfData['client_001LAB'] = self.labels[1]
@@ -98,7 +106,8 @@ class Meritve:
         oneRowOfData['client_003LAB'] = self.labels[3]
         oneRowOfData['RPILAB'] =        self.labels[4]
         oneRowOfData['RPIaLAB'] =       self.labels[5]
-        oneRowOfData['ljLAB'] =         self.labels[6]
+        oneRowOfData['ljTLAB'] =        self.labels[6]
+        oneRowOfData['ljHLAB'] =        self.labels[7]
 
         oneRowOfData['rangeTime'] =     1
 
@@ -113,19 +122,21 @@ class Meritve:
             "client_003 REAL, " +
             "RPI        REAL, " +
             "RPIa       REAL, " +
-            "lj         INTEGER" +
+            "ljT        INTEGER, " +
+            "ljH        INTEGER" +
             ")")
 
 
     def cursExecuteInsert(self, curs):
-        curs.execute("INSERT INTO T_data values(datetime('now','localtime'),(?),(?),(?),(?),(?),(?))",
+        curs.execute("INSERT INTO T_data values(datetime('now','localtime'),(?),(?),(?),(?),(?),(?),(?))",
             (
                 self.client_001,
                 self.client_002,
                 self.client_003,
                 self.RPI,
                 self.RPIa,
-                self.lj
+                self.ljT,
+                self.ljH
             )
         )
 
@@ -138,7 +149,8 @@ class Meritve:
             "client_003,   " +
             "RPI," +
             "RPIa,  " +
-            "lj " +
+            "ljT, " +
+            "ljH " +
             "FROM T_data ORDER BY timestamp DESC LIMIT " + str(numOfSamples)) );
 
 
@@ -149,4 +161,5 @@ class Meritve:
             self.client_003, ",",
             self.RPI, ",",
             self.RPIa, ",",
-            self.lj)
+            self.ljT, ",",
+            self.ljH)
