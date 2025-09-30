@@ -1,4 +1,4 @@
-# 29.9.2025
+# 30.9.2025
 
 class Meritve:
     def __init__(self, myhostname):
@@ -73,6 +73,7 @@ class Meritve:
                 fv = "{:.1f}".format(floatVal)
             else:
                 fv = ""
+
             if what == "client_001":
                 self.client_001 = fv
             elif what == "client_002":

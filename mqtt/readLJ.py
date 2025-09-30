@@ -2,11 +2,12 @@ import bs4 as bs
 import urllib.request
 
 # current temperature and humidity
-# 29.9.2025
+# 30.9.2025
 
 def getTemp():
     url = "https://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/sl/observationAms_si_latest.html"
-    out = ""
+    outT = ""
+    outT = ""
     try:
         source = urllib.request.urlopen(url).read()
         soup = bs.BeautifulSoup(source,features="html.parser")
