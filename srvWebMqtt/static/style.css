@@ -1,33 +1,27 @@
-
-
-body{
+body {
 	background: black;
 	color: yellow;
-  	font-size: 1rem;
+	font-size: 1.5rem;
 }
 
-.button {
-	font: bold 15px Arial;
-	text-decoration: none;
-	background-color: #777777;
-	color: #333333;
-	padding: 2px 6px 2px 6px;
-	border-top: 1px solid #CCCCCC;
-	border-right: 1px solid #333333;
-	border-bottom: 1px solid #333333;
-	border-left: 1px solid #CCCCCC;
+table, th, td {
+	border: 1px solid white;
+	border-collapse: collapse;
 }
 
-img{
-	display: display: inline-block
+img {
+	/* Corrected syntax */
+	display: inline-block;
 }
-tr {
-  font-size: 64px;
-}
+
+/* Key Fix: Adjust padding AND line-height */
 th, td {
-    padding: 0.1rem;
+	font-size: 3rem;
+	padding: 1px;
+	line-height: 1; /* Ensures the height is tight around the 3rem text */
 }
+
 a {
-    color: yellow;
-  font-size: 2rem;
+	color: yellow;
+	font-size: 2rem;
 }

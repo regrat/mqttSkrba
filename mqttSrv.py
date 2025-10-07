@@ -118,10 +118,12 @@ def one_loop():
         time.sleep(2)   #wait to collect all mqtt client data
         debug("Checking ARSO...")
 
-        ljT, ljH = LJ.getTemp()
+        ljT, ljH, ljPM10, ljPM25 = LJ.getTemp()
         debug("DEBUG: LJ: " + ljT + " " + ljH)
         meritve.set("ljT", ljT)
         meritve.set("ljH", ljH)
+        meritve.set("ljPM10", ljPM10)
+        meritve.set("ljPM25", ljPM25)
 
         piTemp = B18.read_temp()
         debug("B18 konec...")
@@ -138,7 +140,7 @@ def one_loop():
 
         add_data_to_DB ()
         meritve.reset()
-        time.sleep(20*60)  #every 20 minutes
+        time.sleep(10*60) #every 10 minutes
         #time.sleep(10)  #every 15s
 
     client.disconnect()

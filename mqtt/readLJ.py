@@ -2,12 +2,12 @@ import bs4 as bs
 import urllib.request
 
 # current temperature and humidity
-# 30.9.2025
+# 1.10.2025
 
 def getTemp():
     url = "https://meteo.arso.gov.si/uploads/probase/www/observ/surface/text/sl/observationAms_si_latest.html"
     outT = ""
-    outT = ""
+    outH = ""
     try:
         source = urllib.request.urlopen(url).read()
         soup = bs.BeautifulSoup(source,features="html.parser")
@@ -23,6 +23,28 @@ def getTemp():
                 break
     except Exception as err:
         print(f"readLJ {err} {type(err)}")
-    return(outT, outH)
 
-# print(getTemp())
+    url = "http://hmljn.arso.gov.si/zrak/kakovost%20zraka/podatki/dnevne_koncentracije.html"
+    outP10 = ""
+    outP25 = ""
+    try:
+        source = urllib.request.urlopen(url).read()
+        soup = bs.BeautifulSoup(source,features="html.parser")
+        tables = soup.find_all('table', class_="online")
+        for table in tables:
+            table_rows = table.find_all('tr')
+            if outP10 =="":
+                for tr in table_rows:
+                    td = tr.find_all('td')
+                    row = [i.text for i  in td]
+                    if len(row) > 0 and row[0] == "LJ Vič":
+                        print(row[0], row[1], row[2])
+                        outP10 = row[1]
+                        outP25 = row[2]
+                        break
+    except Exception as err:
+        print(f"readLJ {err} {type(err)}")
+
+    return(outT, outH, outP10, outP25)
+
+#print(getTemp())

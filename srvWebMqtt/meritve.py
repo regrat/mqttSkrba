@@ -6,12 +6,14 @@ class Meritve:
         self.labels28 = [
             "čas",
             "kuhinja",
-            "Helenina soba",
+            "H. soba",
             "skrinja",
-            "dnevna soba",
+            "dn. soba",
             "gretje",
             "zunaj",
-            "zunajH"
+            "zunajH",
+            "PM10",
+            "PM2,5"
         ]
 
         self.labels29 = [
@@ -22,7 +24,9 @@ class Meritve:
             "dnevna soba",
             "-",
             "zunaj",
-            "zunajH"
+            "zunajH",
+            "PM10",
+            "PM2,5"
         ]
  
         self.labelsB2 = [
@@ -33,7 +37,9 @@ class Meritve:
             "dnevna soba",
             "-",
             "zunaj",
-            "zunajH"
+            "zunajH",
+            "PM10",
+            "PM2,5"
         ]
 
         print("Hostname: " + myhostname)
@@ -55,6 +61,8 @@ class Meritve:
         self.RPIa = None
         self.ljT = None
         self.ljH = None
+        self.ljPM10 = None
+        self.ljPM25 = None
 
 
     def set(self, what, value):
@@ -88,6 +96,10 @@ class Meritve:
                 self.ljT = fv
             elif what == "ljH":
                 self.ljH = fv
+            elif what == "ljPM10":
+                self.ljPM10= fv
+            elif what == "ljPM25":
+                self.ljPM25= fv
 
 
     def setRow(self, row):
@@ -100,6 +112,8 @@ class Meritve:
         oneRowOfData['RPIa'] =          row[5]
         oneRowOfData['ljT'] =           row[6]
         oneRowOfData['ljH'] =           row[7]
+        oneRowOfData['ljPM10'] =        row[8]
+        oneRowOfData['ljPM25'] =        row[9]
         #labels for GUI
         oneRowOfData['timeLAB'] =       self.labels[0]
         oneRowOfData['client_001LAB'] = self.labels[1]
@@ -109,6 +123,9 @@ class Meritve:
         oneRowOfData['RPIaLAB'] =       self.labels[5]
         oneRowOfData['ljTLAB'] =        self.labels[6]
         oneRowOfData['ljHLAB'] =        self.labels[7]
+        oneRowOfData['ljPM10LAB'] =     self.labels[8]
+        oneRowOfData['ljPM25LAB'] =     self.labels[9]
+
 
         oneRowOfData['rangeTime'] =     1
 
@@ -124,12 +141,14 @@ class Meritve:
             "RPI        REAL, " +
             "RPIa       REAL, " +
             "ljT        INTEGER, " +
-            "ljH        INTEGER" +
+            "ljH        INTEGER, " +
+            "ljPM10     INTEGER, " +
+            "ljPM25     INTEGER  " +
             ")")
 
 
     def cursExecuteInsert(self, curs):
-        curs.execute("INSERT INTO T_data values(datetime('now','localtime'),(?),(?),(?),(?),(?),(?),(?))",
+        curs.execute("INSERT INTO T_data values(datetime('now','localtime'),(?),(?),(?),(?),(?),(?),(?),(?),(?))",
             (
                 self.client_001,
                 self.client_002,
@@ -137,7 +156,9 @@ class Meritve:
                 self.RPI,
                 self.RPIa,
                 self.ljT,
-                self.ljH
+                self.ljH,
+                self.ljPM10,
+                self.ljPM25
             )
         )
 
@@ -145,13 +166,15 @@ class Meritve:
     def cursExecuteSelect(self, curs, numOfSamples):
         return(curs.execute("SELECT "+
             "timestamp, " +
-            "client_001,   " +
-            "client_002,   " +
-            "client_003,   " +
-            "RPI," +
-            "RPIa,  " +
-            "ljT, " +
-            "ljH " +
+            "client_001, " +
+            "client_002, " +
+            "client_003, " +
+            "RPI,        " +
+            "RPIa,       " +
+            "ljT,        " +
+            "ljH,        " +
+            "ljPM10,     " +
+            "ljPM25      " +
             "FROM T_data ORDER BY timestamp DESC LIMIT " + str(numOfSamples)) );
 
 
@@ -160,7 +183,9 @@ class Meritve:
             self.client_001, ",",
             self.client_002, ",",
             self.client_003, ",",
-            self.RPI, ",",
-            self.RPIa, ",",
-            self.ljT, ",",
-            self.ljH)
+            self.RPI,        ",",
+            self.RPIa,       ",",
+            self.ljT,        ",",
+            self.ljH,        ",",
+            self.ljPM10,     ",",
+            self.ljPM25)

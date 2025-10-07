@@ -7,16 +7,40 @@
 	<meta http-equiv="refresh" content="60" />
 </head>
 <body>
-	<table>
-	<tr><td>{{ value['client_001LAB'] }}:</td><td>{{ value['client_001'] }}° C   </tr></td>
-	<tr><td>{{ value['client_002LAB'] }}:</td><td>{{ value['client_002'] }}° C   </tr></td>
-	<tr><td>{{ value['client_003LAB'] }}:</td><td>{{ value['client_003'] }}° C   </tr></td>
-	<tr><td>{{ value['RPILAB'] }}:       </td><td>{{ value['RPI']  }}° C         </tr></td>
-	<tr><td>{{ value['RPIaLAB'] }}:      </td><td>{{ value['RPIa'] }}° C         </tr></td>
-	<tr><td>{{ value['ljTLAB'] }}:       </td><td>{{ value['ljT'] }}° C, {{ value['ljH'] }} %  </tr></td>
+	<table style="width:100%">
+	  <tr>
+		<th style="width:25%, table-layout: fixed;"></th>
+		<th style="width:25%, table-layout: fixed;"></th>
+		<th style="width:25%, table-layout: fixed;"></th>
+		<th style="width:25%, table-layout: fixed;"></th>
+	</tr>
+	<tr>
+		<td>{{ value['client_001LAB'] }}:</td>
+		<td>{{ value['client_001'] }}° C </td>
+		<td>{{ value['client_002LAB'] }}:</td>
+		<td>{{ value['client_002'] }}° C </td>
+	</tr>
+	<tr>
+		<td>{{ value['client_003LAB'] }}:</td>
+		<td>{{ value['client_003'] }}° C </td>
+		<td>{{ value['RPILAB'] }}:       </td>
+		<td>{{ value['RPI']  }}° C       </td>
+	</tr>
+	<tr>
+		<td>{{ value['ljTLAB'] }}:       </td>
+		<td>{{ value['ljT'] }}° C, {{ value['ljH'] }} %  </td>
+		<td>{{ value['RPIaLAB'] }}:      </td>
+		<td>{{ value['RPIa'] }}° C       </td>
+	</tr>
+	<tr>
+		<td>{{ value['ljPM10LAB'] }}:</td>
+		<td>{{ value['ljPM10'] }} ug/m3 </td>
+		<td>{{ value['ljPM25LAB'] }}:</td>
+		<td>{{ value['ljPM25'] }} ug/m3 </td>
+	</tr>
 	</table>
 	<hr>
-Graf <a href="show.html?n=144&h={{ value['hostname'] }}">24 ur</a>&nbsp;
+Graf: <a href="show.html?n=144&h={{ value['hostname'] }}">24 ur</a>&nbsp;
      <a href="show.html?n=1008&h={{ value['hostname'] }}">teden</a>&nbsp;
      <a href="show.html?n=10080&h={{ value['hostname'] }}">10 tednov</a>
 &nbsp;
