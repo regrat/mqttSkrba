@@ -4,8 +4,9 @@
 # Initial work based on version created by MJRoBot.org
 # https://www.hackster.io/mjrobot/from-data-to-graph-a-web-journey-with-flask-and-sqlite-4dba35
 #
-# pip3 install --upgrade Flask
-#
+# sudo apt install python3-flask
+# TEST: sudo /usr/bin/python3 /home/pi/mqttSkrba/srvWebMqtt/appjson.py
+
 
 '''
     RPi WEb Server for DHT captured data with Gage and Graph plot
@@ -18,7 +19,8 @@ from matplotlib.figure import Figure
 import io, sys, json
 
 from flask import Flask, render_template, send_file, make_response, request
-from flask import send_file, send_from_directory, safe_join, abort
+from flask import send_file, send_from_directory, abort
+from werkzeug.utils import safe_join
 
 from flask import g, redirect, render_template, url_for, jsonify
 

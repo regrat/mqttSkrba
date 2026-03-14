@@ -16,7 +16,7 @@ def read_temp_raw(device_file):
    return lines
 
 def getSensors():
-   path = "/sys/bus/w1/devices/28"
+   path = "/sys/bus/w1/devices/28"                  #serijska številka 28-00000xxxxxxx
    sensors = []
    # Using '*' pattern
    for files in glob.glob(path + '*'):
@@ -25,6 +25,9 @@ def getSensors():
    sensors.reverse()
    return(sensors)
 
+#ll /sys/bus/w1/devices
+#lrwxrwxrwx 1 root root 0 2026-03-13 09:50 28-0000044a0072 -> ../../../devices/w1_bus_master1/28-0000044a0072/
+#lrwxrwxrwx 1 root root 0 2026-03-13 09:50 28-00000ce18dbb -> ../../../devices/w1_bus_master1/28-00000ce18dbb/
 #$ cat /sys/bus/w1/devices/28-0000044a0072/w1_slave 
 #  40 01 4b 46 7f ff 10 10 1d : crc=1d YES
 #4  0 01 4b 46 7f ff 10 10 1d t=20000

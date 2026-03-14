@@ -3,15 +3,26 @@
 #   https://github.com/eclipse/paho.mqtt.python
 #
 # Installation and start
-# 29.9.2025
+# 2026-03-02
 """
+NEW trixie:
+sudo apt-get install sqlite3
+sudo apt install python3-paho-mqtt
+sudo apt-get install mosquitto
+sudo apt install python3-bs4
+sudo apt-get install python3-matplotlib
+
+sudo apt install python3-flask
+
+OLD:
   sudo apt-get install -y sshfs
-  sudo apt-get install python3-pip
-  sudo apt-get install python3-dev python3-rpi.gpio
+  #sudo apt-get install python3-pip
+  #sudo apt-get install python3-dev python3-rpi.gpio
   sudo apt-get install sqlite3
   sudo apt-get install mosquitto
   sudo pip3 install paho-mqtt
-  sudo pip3 install beautifulsoup4
+  #sudo pip3 install beautifulsoup4
+  sudo apt install python3-bs4
   sudo apt-get install python3-flask
   sudo apt-get install python3-matplotlib
 
@@ -20,6 +31,8 @@
 """
 
 import paho.mqtt.client as mqtt
+from paho.mqtt.enums import CallbackAPIVersion
+
 import sqlite3
 import time, sys
 
@@ -44,15 +57,15 @@ def debug(s):
     if dbg:
         print(s)
 
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, reason_code, properties):
     global loop_flag
-    print("Connected With Result Code " +str(rc))
-    if rc != 0:
+    print("Connected With Result Code: " +str(reason_code))
+    if reason_code != 0:
         print("0: Connection successful 1: Connection refused – incorrect protocol version 2: Connection refused – invalid client identifier")
         print("3: Connection refused – server unavailable 4: Connection refused – bad username or password 5: Connection refused.")
         loop_flag = 0
 
-def on_disconnect(client, userdata, rc):
+def on_disconnect(client, userdata, flags, reason_code, properties):
     print("Client Got Disconnected")
 
 def on_message_from_CLIENT_001(client, userdata, message):
@@ -83,7 +96,8 @@ def add_data_to_DB ():
 def one_loop():
     meritve.reset()
 
-    client = mqtt.Client()
+    #client = mqtt.Client()
+    client = mqtt.Client(CallbackAPIVersion.VERSION2)
     client.on_connect = on_connect
     client.on_disconnect = on_disconnect
     #To Process Every Other Message
