@@ -5,6 +5,15 @@
 	<link rel="stylesheet" href='../static/style.css'/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="refresh" content="60" />
+	<style>
+#prikaz-casa {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #fefefe;
+    white-space: nowrap; /* Prepreči prelom v drugo vrstico */
+    padding: 10px 20px;
+}
+	</style>
 </head>
 <body>
 	<table style="width:100%">
@@ -47,5 +56,36 @@ Graf: <a href="show.html?n=144&h={{ value['hostname'] }}">24 ur</a>&nbsp;
 &nbsp;
 &nbsp;
 Zadnja meritev: {{ value['time'] }}
+<br/>
+    <div id="ura-kontejner">
+        <div id="prikaz-casa">Nalaganje...</div>
+    </div>
+
+    <script>
+        function posodobiVse() {
+            const zdaj = new Date();
+            
+            // Možnosti za slovenski zapis datuma
+            const datumOpcije = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            
+            // Generiranje nizov (stringov)
+            const datumString = zdaj.toLocaleDateString('sl-SI', datumOpcije);
+            const uraString = zdaj.toLocaleTimeString('sl-SI');
+
+            // Izpis v HTML elemente
+	    document.getElementById('prikaz-casa').textContent = `${datumString} | ${uraString}`;
+        }
+
+        // Osveži vsako sekundo
+        setInterval(posodobiVse, 1000);
+
+        // Pokliči takoj, da ne bo 1 sekundo prazno
+        posodobiVse();
+    </script>
 </body>
 </html>
